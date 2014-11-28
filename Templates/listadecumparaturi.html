@@ -1,0 +1,23 @@
+<td>
+    {{shop.name}}
+</td>
+<td>
+    {{shop.quantity}}
+</td>
+<td>
+    <button type="button" class="btn btn-default" ng-click="showEdit(shop)" >Editare</button>
+
+
+    <div ng-hide="shop.edit">
+        <div class="panel-heading">
+            <h2 class="panel-title">Editeaza produs in lista de cumparaturi SKY</h2>
+        </div>
+        <label>Nume produs:</label>
+        <input type="text" class="form-control" placeholder="" required ng-model="Prod.name" ng-minlength="2" ng-maxlength="15">
+        <label>Cantitate produs:</label>
+        <input type="text" class="form-control" placeholder=""  ng-model="Prod.quantity" ng-minlength="1" ng-maxlength="15">
+        <button type="button" class="btn btn-default" ng-click="salveaza(shop,Prod.name,Prod.quantity)" >Salveaza modificari</button>
+    </div>
+
+</td>
+
