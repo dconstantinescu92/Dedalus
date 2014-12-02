@@ -10,7 +10,7 @@ shoppingApp.controller('ListController', ['$scope', function($scope) {
     var shoppingList = [
     {
         name: 'Sky',
-        quantity: 2,
+        quantity: 3,
         check: 0,
         edit: true
     },
@@ -66,8 +66,9 @@ shoppingApp.controller('ListController', ['$scope', function($scope) {
 
     };
 
-    $scope.varShowEdit=false; //editare produs
+
     $scope.showEdit = function(shop) {
+        console.log(shop)
         shop.edit=false;
 
 
@@ -88,7 +89,7 @@ shoppingApp.controller('ListController', ['$scope', function($scope) {
         for(var i=0;i<shoppingList.length;i++)
         {
             if(shoppingList[i].name==prod.name)
-            {
+            {   shoppingList[i].edit=true;
                 shoppingList[i].name=name;
                 shoppingList[i].quantity=quantity;
             }

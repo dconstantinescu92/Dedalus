@@ -24,28 +24,34 @@
     </tr>
 
     <tr  ng-repeat="shop in shoppingList |filter:search:startsWith " class={{shop.check}}>
-        <td>
+
+
+          <td ng-show="shop.edit">
             {{shop.name}}
-        </td>
-        <td>
-            {{shop.quantity}}
-        </td>
-        <td>
-            <button type="button" class="btn btn-default" ng-click="showEdit(shop)" >Editare</button>
+            </td>
+
+            <td ng-hide="shop.edit"><input ng-model="shop.name" type="text" class="form-control" placeholder="" required ng-minlength="2" ng-maxlength="15">
+            </td>
+
+          <td ng-show="shop.edit">
+              {{shop.quantity}}
+          </td>
+
+        <td ng-hide="shop.edit">
+            <input ng-model="shop.quantity" type="number" class="form-control" placeholder="" required  ng-maxlength="15">
 
 
-            <div ng-hide="shop.edit">
-                <div class="panel-heading">
-                    <h2 class="panel-title">Editeaza produs in lista de cumparaturi SKY</h2>
-                </div>
-                <label>Nume produs:</label>
-                <input type="text" class="form-control" placeholder="" required ng-model="Prod.name" ng-minlength="2" ng-maxlength="15">
-                <label>Cantitate produs:</label>
-                <input type="text" class="form-control" placeholder=""  ng-model="Prod.quantity" ng-minlength="1" ng-maxlength="15">
-                <button type="button" class="btn btn-default" ng-click="salveaza(shop,Prod.name,Prod.quantity)" >Salveaza modificari</button>
-            </div>
-
         </td>
+
+          <td ng-show="shop.edit">
+              <button  type="button" class="btn btn-default" ng-click="showEdit(shop)" >Editare</button>
+          </td>
+
+
+        <td ng-hide="shop.edit">
+            <button type="button" class="btn btn-default" ng-click="salveaza(shop,shop.name,shop.quantity)" >Salveaza modificari</button>
+        </td>
+
         <td>
             <form>
                 <input type="checkbox" name="check" value="uncheck" ng-model="check" ng-change="checkProd(shop)" >Check
