@@ -2,6 +2,7 @@
     table {
         border-collapse: collapse;
     }
+
     tr.strikeout td:before {
         content: " ";
         position: absolute;
@@ -10,59 +11,81 @@
         border-bottom: 1px solid gray;
         width: 100%;
     }
+
     td {
         position: relative;
         padding: 5px 10px;
     }
 </style>
 
+<div style="background: palegoldenrod; width: 400px;margin-left:32%;">
+    <table class=" listCenter table-bordered">
+        <tr>
+            <H3 style="text-align: center">Lista shopping iarna </H3>
+        </tr>
 
-<table class="table table-bordered">
-    <tr>
-        <th>Nume produs</th>
-        <th>Cantitate produs</th>
-    </tr>
-
-    <tr  ng-repeat="shop in shoppingList |filter:search:startsWith " class={{shop.check}}>
+        <tr ng-repeat="shop in shoppingList |filter:search:startsWith " class={{shop.check}}>
 
 
-          <td ng-show="shop.edit">
-            {{shop.name}}
+            <td style="width: 100px" ng-show="shop.edit">
+                {{shop.name}}
             </td>
 
-            <td ng-hide="shop.edit"><input ng-model="shop.name" type="text" class="form-control" placeholder="" required ng-minlength="2" ng-maxlength="15">
+            <td ng-hide="shop.edit"><input ng-model="shop.name" type="text" class="form-control" placeholder="" required
+                                           ng-minlength="2" ng-maxlength="15">
             </td>
 
-          <td ng-show="shop.edit">
-              {{shop.quantity}}
-          </td>
+            <td style="width: 100px" ng-show="shop.edit">
+                {{shop.quantity}}
+            </td>
 
-        <td ng-hide="shop.edit">
-            <input ng-model="shop.quantity" type="number" class="form-control" placeholder="" required  ng-maxlength="15">
-
-
-        </td>
-
-          <td ng-show="shop.edit">
-              <button  type="button" class="btn btn-default" ng-click="showEdit(shop)" >Editare</button>
-          </td>
+            <td ng-hide="shop.edit">
+                <input ng-model="shop.quantity" type="number" class="form-control" placeholder="" required
+                       ng-maxlength="15">
 
 
-        <td ng-hide="shop.edit">
-            <button type="button" class="btn btn-default" ng-click="salveaza(shop,shop.name,shop.quantity)" >Salveaza modificari</button>
-        </td>
+            </td>
 
-        <td>
-            <form>
-                <input type="checkbox" name="check" value="uncheck" ng-model="check" ng-change="checkProd(shop)" >Check
+            <td ng-show="shop.edit" style="width: 100px">
+                <button type="button" class="btn btn-default" ng-click="showEdit(shop)">Editare</button>
+            </td>
 
-            </form>
-        </td>
-    </tr>
 
-    <td>
-        <button type="button" class="btn btn-default" ng-click="show()" >+</button>
-        <div ng-show="varShow">
+            <td ng-hide="shop.edit">
+                <button type="button" class="btn btn-default" ng-click="salveaza(shop,shop.name,shop.quantity)">Salveaza
+                    modificari
+                </button>
+            </td>
+
+            <td style="width: 100px">
+                <form>
+                    <input type="checkbox" name="check" value="uncheck" ng-model="check" ng-change="checkProd(shop)">Check
+
+                </form>
+            </td>
+        </tr>
+
+
+    </table>
+
+
+    <div class="panel panel-default listCenter" style="width: 400px; ">
+
+
+        <tr>
+            <label style="margin-left: 35%">Stergere produse:</label>
+            <button style="margin-left: 42%" type="button" class="btn btn-default" ng-click="sterge()">Sterge</button>
+        </tr>
+
+        <label style="margin-left: 35%">Cautare produse:</label>
+        <input style="margin-left: 30%" ng-model="search.name"><br>
+
+
+    </div>
+    <div>
+
+        <button style="margin-left: 48% " type="button" class="btn btn-default" ng-click="show()">+</button>
+        <div style="width: 400px; " ng-show="varShow">
 
             <div class="panel-heading">
                 <h2 class="panel-title">Adauga produs in lista de cumparaturi SKY</h2>
@@ -70,28 +93,24 @@
 
             <div ng-form="shopAddForm">
                 <label>Nume produs:</label>
-                <input type="text" class="form-control" placeholder="" required ng-model="Prod.name" ng-minlength="2" ng-maxlength="15">
+                <input type="text" name="name" id="name" class="form-control" placeholder="name" required
+                       ng-model="Prod.name" ng-minlength="2" ng-maxlength="15">
                 <label>Cantitate produs:</label>
-                <input type="text" class="form-control" placeholder=""  ng-model="Prod.quantity" ng-minlength="1" ng-maxlength="15">
-                <button type="submit" class="btn btn-default" ng-click="adauga(Prod)" >Adauga</button>
+                <input type="text" class="form-control" placeholder="quantity" ng-model="Prod.quantity" ng-minlength="1"
+                       ng-maxlength="15">
+
+                <div class="error"
+                     ng-show="shopAddForm.name.$dirty && shopAddForm.name.$invalid">
+                    <small class="error"
+                           ng-show="shopAddForm.name.$error.required">
+                        <H3>Numele produsului este obligatoriu!!!</H3>
+                    </small>
+                </div>
+                <button type="submit" class="btn btn-default" ng-click="adauga(Prod)"
+                        ng-disabled="shopAddForm.$invalid">Adauga
+                </button>
             </div>
 
         </div>
-    </td>
-
-
-
-</table>
-
-<div class="panel panel-default">
-
-    <label>Cautare produse:</label>
-    Name <input ng-model="search.name"><br>
-
-
-            <tr>
-            <label>Stergere produse:</label>
-            <button type="button" class="btn btn-default" ng-click="sterge()">Sterge</button>
-            </tr>
-
+    </div>
 </div>

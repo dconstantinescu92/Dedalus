@@ -15,6 +15,7 @@ shoppingApp.controller('ListController', ['$scope','$http','$location', function
 
 
     $scope.adauga = function (Prod) {
+        $scope.varShow = false;
         $http({url: 'http://localhost:8080/api/produse', method: 'POST', data: Prod}).
             success(function () {
 
@@ -26,6 +27,7 @@ shoppingApp.controller('ListController', ['$scope','$http','$location', function
 
 
             });
+        $scope.Prod={};
     };
 
 
@@ -47,6 +49,7 @@ shoppingApp.controller('ListController', ['$scope','$http','$location', function
 
     $scope.salveaza = function (prod, name, quantity) {//salveaza editare
             console.log(name);
+
         for (var i = 0; i < $scope.shoppingList.length; i++) {
             if ($scope.shoppingList[i].name == prod.name) {
                 $http({url: 'http://localhost:8080/api/produse/'+$scope.shoppingList[i]._id, method: 'PUT', data:{name: name, quantity:quantity}})
@@ -114,6 +117,7 @@ shoppingApp.controller('ListController', ['$scope','$http','$location', function
         name: '',
         quantity: ''
     };
+    $scope.formVisibilty = false;
 
     $scope.varShow = false;//pentru expandare +
     $scope.show = function () {
